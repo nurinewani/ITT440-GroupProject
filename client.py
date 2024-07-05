@@ -90,7 +90,7 @@ def start_client():
     client = GameClient(root)
     root.mainloop()
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     start_client()
 
     
