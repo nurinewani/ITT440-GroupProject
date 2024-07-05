@@ -54,3 +54,43 @@ def handle_client(conn, addr):
     
     conn.close()
 
+    def send_turn_message():
+    turn_message = f"\nTurn: {players[player_turn]}"
+    broadcast(turn_message)
+
+def determine_winner():
+    global scores
+    if choices[0] == choices[1]:
+        broadcast("It's a tie!")
+    elif (choices[0] == "batu" and choices[1] == "burung") or (choices[0] == "burung" and choices[1] == "air") or (choices[0] == "air" and choices[1] == "batu"):
+        broadcast(f"\n{players[0]} wins the round!")
+        scores[0] += 1
+    else:
+        broadcast(f"\n{players[1]} wins the round!")
+        scores[1] += 1
+
+def determine_final_winner():
+    if scores[0] > scores[1]:
+        return f"\n{players[0]} wins the game!"
+    elif scores[1] > scores[0]:
+        return f"\n{players[1]} wins the game!"
+    else:
+        return "\nThe game is a tie!"
+
+def broadcast(message):
+    for client in clients:
+        client.send(message.encode(FORMAT))
+
+def start():
+    server.listen()
+    print(f"[LISTENING] Server is listening on {SERVER}:{PORT}")
+    while True:
+        conn, addr = server.accept()
+        clients.append(conn)
+        thread = threading.Thread(target=handle_client, args=(conn, addr))
+        thread.start()
+        print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
+
+print("[STARTING] Server is starting...")
+
+start()
