@@ -92,5 +92,3 @@ def start_client():
 
 if __name__ == "_main_":
     start_client()
-
-    
