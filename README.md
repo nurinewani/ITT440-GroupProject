@@ -8,3 +8,9 @@ Group Members :
 4. SITI NUR FATIMAH
 
 \\\THIS IS TESTING 1///
+
+UPDATE REPORT AND PROJECT SUBMISSION
+
+No presentation, only Video Demo. 10-15 mins
+Report perlu sekali
+Submission thru Microsoft Teams
